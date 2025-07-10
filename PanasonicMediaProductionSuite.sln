@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanasonicMediaProductionSuite", "PanasonicMediaProductionSuite.csproj", "{D18B9B38-B86E-4BBE-952D-C0EDB032933A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D18B9B38-B86E-4BBE-952D-C0EDB032933A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D18B9B38-B86E-4BBE-952D-C0EDB032933A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D18B9B38-B86E-4BBE-952D-C0EDB032933A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D18B9B38-B86E-4BBE-952D-C0EDB032933A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFA0EEE8-601F-4435-8BFA-4DDCD4F5DEF8}
+	EndGlobalSection
+EndGlobal
