@@ -10,7 +10,7 @@ namespace PanasonicMediaProductionSuite
         {
             if (DebugEnable)
             {
-                CrestronConsole.PrintLine($"{nameof(PanasonicMediaProductionSuite)}.{obj} {message}: {details}");
+                CrestronConsole.PrintLine($"{obj} {message}: {details}");
             }
         }
     }

@@ -67,9 +67,9 @@ namespace PanasonicMediaProductionSuite
 
     public class TargetFrame
     {
-        public int pos_x { get; set; }
+        public double pos_x { get; set; }
         public double pos_y { get; set; }
-        public int zoom { get; set; }
+        public double zoom { get; set; }
     }
 
     public class TrackingControl

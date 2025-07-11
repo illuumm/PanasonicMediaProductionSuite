@@ -1,4 +1,5 @@
 ﻿using Crestron.SimplSharp;
+using Independentsoft.Exchange;
 using Independentsoft.Json.Parser;
 using Newtonsoft.Json;
 using System;
@@ -157,9 +158,10 @@ namespace PanasonicMediaProductionSuite
                             AutoFramingEnableState = (ushort)framingStateRoot.FramingState[0].FramingEnable;
                             AutoFramingStartState = (ushort)framingStateRoot.FramingState[0].FramingStartStop;
                             AutoStartAreaState = (ushort)framingStateRoot.FramingState[0].auto_start_area.AutoStartAreaEnable;
+                            ReturnFramingResponse();
                             break;
                         }
-                    case "FramingEnable":
+                    case "FramingEnable": //{"Command":"FramingEnable","Parameter":"&id=2&enable=off","Response":"ack"}
                         {
                             if (commandResponse.Parameter.Contains("enable=on"))
                             {
@@ -172,7 +174,7 @@ namespace PanasonicMediaProductionSuite
                             ReturnFramingResponse();
                             break;
                         }
-                    case "FramingStartStop":
+                    case "FramingStartStop": //{"Command":"FramingStartStop","Parameter":"&id=2&process=start","Response":"ack"}
                         {
                             if (commandResponse.Parameter.Contains("process=start"))
                             {
@@ -185,7 +187,7 @@ namespace PanasonicMediaProductionSuite
                             ReturnFramingResponse();
                             break;
                         }
-                    case "AutoStartArea":
+                    case "AutoStartArea": //{"Command":"AutoStartArea","Parameter":"&id=2&mode=1","Response":"ack"}
                         {
                             if (commandResponse.Parameter.Contains("mode=1"))
                             {
@@ -198,15 +200,20 @@ namespace PanasonicMediaProductionSuite
                             ReturnFramingResponse();
                             break;
                         }
-                    case "Preset":
+                    case "Preset": //{"Command":"Preset","Parameter":"&id=2&mode=recall&preset_num=1","Response":"ack"}
                         {
                             if (parameters[2].Contains("recall") && parameters[3].Contains("preset_num="))
                             {
-                                string preset = commandResponse.Parameter.Remove(11);
+                                string preset = parameters[3].Remove(0, 11);
                                 bool result = ushort.TryParse(preset, out ushort x);
+                                
                                 if (result)
                                 {
                                     OnPresetRecall?.Invoke(this, new PresetRecallArgs { Preset = x });
+                                }
+                                else
+                                {
+                                    CrestronConsole.PrintLine($"{this}.{nameof(Client_OnMessageReceived)}: Failed to parse preset number from {parameters[3]}");
                                 }
                             }
                             break;
