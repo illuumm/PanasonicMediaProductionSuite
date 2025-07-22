@@ -102,10 +102,11 @@ namespace PanasonicMediaProductionSuite
 
             try
             {
+                Debugger.Log(this, $"{nameof(HandleGet)}", $"get uri: {uri}");
                 string responseBody = await Client.GetStringAsync(uri).ConfigureAwait(false);
                 if (!string.IsNullOrEmpty(responseBody))
                 {
-                    Debugger.Log(this, $"{nameof(HandleGet)}", responseBody);
+                    Debugger.Log(this, $"{nameof(HandleGet)}", $"responseBody: {responseBody}");
                     var args = new MessageReceivedArgs { EventMessage = responseBody };
 
                     var handlers = OnMessageReceived;

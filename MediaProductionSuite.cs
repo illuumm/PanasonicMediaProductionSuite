@@ -108,9 +108,22 @@ namespace PanasonicMediaProductionSuite
             GetCommand($"cgi-bin/auto_framing?cmd=FramingStartStop&id={CameraId}&process=stop");
         }
 
-        public void AutoStartAreaOn()
+        public void AutoStartAreaOn(ushort x, ushort y, ushort width, ushort height)
         {
-            GetCommand($"cgi-bin/auto_framing?cmd=AutoStartArea&id={CameraId}&mode=1");
+            if (x + width > 1920 || y + height > 1080)
+            {
+                CrestronConsole.PrintLine($"{this}, {nameof(AutoStartAreaOn)} parameters out of range. Must fit within a 1920x1080 frame");
+                return;
+            }
+
+            if (x == 0 && y == 0 && width == 0 && height == 0)
+            {
+                GetCommand($"cgi-bin/auto_framing?cmd=AutoStartArea&id={CameraId}&mode=1");
+            }
+            else
+            {
+                GetCommand($"cgi-bin/auto_framing?cmd=AutoStartArea&id={CameraId}&mode=1&area_x={x}&area_y={y}&area_width={width}&area_height={height}");
+            }
         }
 
         public void AutoStartAreaOff()
