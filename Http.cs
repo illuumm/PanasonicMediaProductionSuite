@@ -8,8 +8,6 @@ namespace PanasonicMediaProductionSuite
 {
     public class Http
     {
-        public ushort DebugEnable;
-
         private HttpClient Client;
         private Uri BaseUri;
         private readonly object SyncLock = new object();
