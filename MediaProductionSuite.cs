@@ -108,7 +108,12 @@ namespace PanasonicMediaProductionSuite
             GetCommand($"cgi-bin/auto_framing?cmd=FramingStartStop&id={CameraId}&process=stop");
         }
 
-        public void AutoStartAreaOn(ushort x, ushort y, ushort width, ushort height)
+        public void AutoStartAreaOn()
+        {
+            GetCommand($"cgi-bin/auto_framing?cmd=AutoStartArea&id={CameraId}&mode=1");
+        }
+
+        public void AutoStartAreaOnSetDimensions(ushort x, ushort y, ushort width, ushort height)
         {
             if (x + width > 1920 || y + height > 1080)
             {
@@ -116,14 +121,7 @@ namespace PanasonicMediaProductionSuite
                 return;
             }
 
-            if (x == 0 && y == 0 && width == 0 && height == 0)
-            {
-                GetCommand($"cgi-bin/auto_framing?cmd=AutoStartArea&id={CameraId}&mode=1");
-            }
-            else
-            {
-                GetCommand($"cgi-bin/auto_framing?cmd=AutoStartArea&id={CameraId}&mode=1&area_x={x}&area_y={y}&area_width={width}&area_height={height}");
-            }
+            GetCommand($"cgi-bin/auto_framing?cmd=AutoStartArea&id={CameraId}&mode=1&area_x={x}&area_y={y}&area_width={width}&area_height={height}");
         }
 
         public void AutoStartAreaOff()
