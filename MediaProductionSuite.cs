@@ -42,6 +42,7 @@ namespace PanasonicMediaProductionSuite
         private readonly Http Client = new Http();
 
         public event ClientStatusDelegate OnClientStatusChanged;
+        public event MessageReceivedDelegate OnClientMessageReceived;
         public event ReturnFramingStateDelegate OnReturnFramingState;
         public event PresetRecallDelegate OnPresetRecall;
 
@@ -151,6 +152,8 @@ namespace PanasonicMediaProductionSuite
         {
             try
             {
+                OnClientMessageReceived?.Invoke(this, e);
+
                 CommandResponse commandResponse = JsonConvert.DeserializeObject<CommandResponse>(e.EventMessage);
 
                 if (commandResponse.Response != "ack")
